@@ -24,8 +24,14 @@ class LoginPage(BaseClass):
     def login_button_click(self):
         self.login_button().click()
 
-    def burger_button(self):
-        return self.app.driver.find_element(*MainLocators.BURGER_BUTTON)
+    def burger_button(self, wait_time=15):
+        timestamp = time.time() + wait_time
+        while time.time() < timestamp:
+            element = self.app.driver.find_elements(*MainLocators.BURGER_BUTTON)
+            if len(element) > 0:
+                return element[0]
+            time.sleep(0.5)
+        return 0
 
     def burger_button_click(self):
         logger.info("Пытаемся нажать кнопку бургер")
