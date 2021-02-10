@@ -1,0 +1,65 @@
+import allure
+import pytest
+
+from common.constants import Goods, Order, RandomData, InvalidGoods
+
+
+class TestShopping:
+    @allure.story("Покупка товаров")
+    @allure.severity("critical")
+    @pytest.mark.parametrize(
+        "first_name, last_name, postal_code",
+        ((RandomData.first_name, RandomData.last_name, RandomData.postal_code),),
+    )
+    def test_shopping(self, app, login, first_name, last_name, postal_code):
+        """
+        1. Открыть страницу
+        2. Выбрать все 6 товаров
+        3. Кликнуть корзину
+        4. Проверить что выбранные товары добавились
+        5. Кликнуть кнопку "Checkout"
+        6. Заполнить First Name, Last Name, Zip
+        7. Проверить информацию о покупке
+        (отображаются нужные товары, отображается соотв. цена)
+        8. Кликнуть кнопку FINISH
+        """
+        app.shopping.buying()
+        assert app.shopping.goods() == Goods.ALL_GOODS
+        app.shopping.checkout_button_click()
+        app.shopping.input_values(
+            first_name=first_name, last_name=last_name, postal_code=postal_code
+        )
+        assert app.shopping.finish_info_goods_text() == Goods.FINISH_ALL_GOODS
+        assert app.shopping.payment_info_text() == Goods.PAYMENT_INFO_ALL_GOODS
+        app.shopping.finish_button_click()
+        assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
+
+    @allure.story("Невалидная покупка без указания товаров")
+    @allure.severity("critical")
+    @pytest.mark.parametrize(
+        "first_name, last_name, postal_code",
+        ((RandomData.first_name, RandomData.last_name, RandomData.postal_code),),
+    )
+    def test_invalid_shopping_without_goods(
+        self, app, login, first_name, last_name, postal_code
+    ):
+        """
+        1. Открыть страницу
+        2. Кликнуть корзину
+        3. Кликнуть кнопку "Checkout"
+        4. Заполнить First Name, Last Name, Zip
+        5. Проверить информацию о покупке
+        (отображается соотв. цена == 0)
+        6. Кликнуть кнопку FINISH
+        """
+        app.shopping.shopping_cart_button_click()
+        app.shopping.checkout_button_click()
+        app.shopping.input_values(
+            first_name=first_name, last_name=last_name, postal_code=postal_code
+        )
+        assert (
+            app.shopping.payment_info_text()
+            == InvalidGoods.INVALID_PAYMENT_INFO_ALL_GOODS
+        )
+        app.shopping.finish_button_click()
+        assert app.shopping.order_info_text() == Order.ORDER_INFORMATION

@@ -28,6 +28,7 @@ class LoginPage(BaseClass):
         return self.app.driver.find_element(*MainLocators.BURGER_BUTTON)
 
     def burger_button_click(self):
+        logger.info("Пытаемся нажать кнопку бургер")
         self.burger_button().click()
 
     def auth(self, username: str, password: str):
@@ -51,8 +52,14 @@ class LoginPage(BaseClass):
     def logout_button_click(self):
         self.logout_button().click()
 
-    def items_burger_view(self):
-        return self.app.driver.find_elements(*MainLocators.BURGER_ITEMS)
+    def items_burger_view(self, wait_time=15):
+        timestamp = time.time() + wait_time
+        while time.time() < timestamp:
+            element = self.app.driver.find_elements(*MainLocators.BURGER_ITEMS)
+            if len(element) > 0:
+                return element
+            time.sleep(0.5)
+        return 0
 
     def items(self):
         return [value.text for value in self.items_burger_view()]

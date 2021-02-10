@@ -5,7 +5,6 @@ from common.constants import Users, Burger, Alerts
 
 
 class TestAuth:
-
     @allure.story("Авторизация")
     @allure.severity("blocker")
     @pytest.mark.parametrize(
@@ -13,7 +12,7 @@ class TestAuth:
         (
             (Users.STANDART_USER, Users.PASSWORD),
             (Users.PROBLEM_USER, Users.PASSWORD),
-            (Users.PERFOMANCE_USER, Users.PASSWORD)
+            (Users.PERFOMANCE_USER, Users.PASSWORD),
         ),
     )
     def test_auth_shop(self, app, username, password):
@@ -37,8 +36,8 @@ class TestAuth:
         (
             (Users.INVALID_LOCKED_USER, Users.PASSWORD, Alerts.INVALID_LOCKED_USER),
             (Users.EMPTY_USER, Users.EMPTY_PASSWORD, Alerts.EMPTY_USERNAME),
-            ('dsadsaads', Users.EMPTY_PASSWORD, Alerts.EMPTY_PASSWORD)
-        )
+            ("dsadsaads", Users.EMPTY_PASSWORD, Alerts.EMPTY_PASSWORD),
+        ),
     )
     def test_invalid_auth(self, app, username, password, alert):
         """
