@@ -59,13 +59,8 @@ class LoginPage(BaseClass):
         self.logout_button().click()
 
     def items_burger_view(self, wait_time=15):
-        timestamp = time.time() + wait_time
-        while time.time() < timestamp:
-            element = self.app.driver.find_elements(*MainLocators.BURGER_ITEMS)
-            if len(element) > 0:
-                return element
-            time.sleep(0.5)
-        return 0
+        logger.info("Пытаемся вытащить итемы с выдвигающегося меню")
+        return self.app.driver.find_elements(*MainLocators.BURGER_ITEMS)
 
     def items(self):
         return [value.text for value in self.items_burger_view()]

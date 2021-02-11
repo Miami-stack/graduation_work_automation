@@ -28,8 +28,5 @@ class Application:
         logger.info("Open main page")
         self.driver.get(self.url)
 
-    def open_page(self, url: str):
-        self.driver.get(f"{self.url}{url}")
-
     def browser_close(self):
         self.driver.quit()
