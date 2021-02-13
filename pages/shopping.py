@@ -94,3 +94,36 @@ class ShoppingPage(BaseClass):
     def buying(self):
         self.add_to_cart_buttons_click()
         self.shopping_cart_button_click()
+
+    def error_view(self):
+        return self.app.driver.find_element(*ShoppingLocators.ERROR)
+
+    def error_text(self):
+        return self.error_view().text
+
+    def continue_button_click(self):
+        self.continue_button().click()
+
+    def input_values_firstname(self, first_name):
+        logger.info(
+            f"Пытаемся заполнить в негативном тесте "
+            f"информацию о покупателе  first_name: {first_name}\n"
+        )
+        self.input_value(self.first_name_input(), first_name)
+        self.continue_button_click()
+
+    def input_values_lastname(self, last_name):
+        logger.info(
+            f"Пытаемся заполнить в негативном тесте "
+            f"информацию о покупателе last_name: {last_name}\n"
+        )
+        self.input_value(self.last_name_input(), last_name)
+        self.continue_button_click()
+
+    def input_values_postalcode(self, postal_code):
+        logger.info(
+            f"Пытаемся заполнить в негативном тесте "
+            f"информацию о покупателе postal_code: {postal_code}\n"
+        )
+        self.input_value(self.postal_code_input(), postal_code)
+        self.continue_button_click()

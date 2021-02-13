@@ -88,6 +88,12 @@ class InvalidGoods:
     ]
 
 
+class InvalidCheckoutYourInformation:
+    INVALID_FIRST_NAME = "Error: First Name is required"
+    INVALID_LAST_NAME = "Error: Last Name is required"
+    INVALID_POSTAL_CODE = "Error: Postal Code is required"
+
+
 class RandomData:
     data = ShopData.random()
     first_name = data.first_name

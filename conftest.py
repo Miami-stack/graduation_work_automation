@@ -15,13 +15,15 @@ def app(request):
     app.browser_close()
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture()
 def login(request, app):
     login = request.config.getoption("--username")
     passwd = request.config.getoption("--password")
     app.open_main_page()
-    if app.login.logout_button() == 0:
-        app.login.auth(login, passwd)
+    log = app.login.auth(login, passwd)
+    yield log
+    app.login.burger_button_click()
+    app.login.logout_button_click()
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

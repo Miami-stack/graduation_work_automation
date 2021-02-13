@@ -12,3 +12,4 @@ class ShoppingLocators:
     PAYMENT_INFO = (By.XPATH, '//div[@class="summary_info"]')
     FINISH_BUTTON = (By.XPATH, '//a[@class="btn_action cart_button"]')
     ORDER_INFO = (By.ID, "checkout_complete_container")
+    ERROR = (By.XPATH, '//h3[@data-test="error"]')
