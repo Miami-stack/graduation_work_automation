@@ -20,8 +20,8 @@ def login(request, app):
     login = request.config.getoption("--username")
     passwd = request.config.getoption("--password")
     app.open_main_page()
-    log = app.login.auth(login, passwd)
-    yield log
+    app.login.auth(login, passwd)
+    yield
     app.login.burger_button_click()
     app.login.logout_button_click()
 

@@ -4,7 +4,7 @@ import pytest
 from common.constants import (
     Goods,
     Order,
-    RandomData,
+    RandomShopData,
     InvalidGoods,
     InvalidCheckoutYourInformation,
 )
@@ -15,7 +15,13 @@ class TestShopping:
     @allure.severity("critical")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
-        ((RandomData.first_name, RandomData.last_name, RandomData.postal_code),),
+        (
+            (
+                RandomShopData.first_name,
+                RandomShopData.last_name,
+                RandomShopData.postal_code,
+            ),
+        ),
     )
     def test_shopping(self, app, login, first_name, last_name, postal_code):
         """
@@ -29,7 +35,7 @@ class TestShopping:
         (отображаются нужные товары, отображается соотв. цена)
         8. Кликнуть кнопку FINISH
         """
-        app.shopping.buying()
+        app.shopping.buy(data=Goods.ALL_GOODS)
         assert app.shopping.goods() == Goods.ALL_GOODS
         app.shopping.checkout_button_click()
         app.shopping.input_values(
@@ -44,7 +50,13 @@ class TestShopping:
     @allure.severity("critical")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
-        ((RandomData.first_name, RandomData.last_name, RandomData.postal_code),),
+        (
+            (
+                RandomShopData.first_name,
+                RandomShopData.last_name,
+                RandomShopData.postal_code,
+            ),
+        ),
     )
     def test_invalid_shopping_without_goods(
         self, app, login, first_name, last_name, postal_code
@@ -74,7 +86,13 @@ class TestShopping:
     @allure.severity("critical")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
-        ((RandomData.first_name, RandomData.last_name, RandomData.postal_code),),
+        (
+            (
+                RandomShopData.first_name,
+                RandomShopData.last_name,
+                RandomShopData.postal_code,
+            ),
+        ),
     )
     def test_invalid_shopping(self, app, login, first_name, last_name, postal_code):
         """
@@ -93,7 +111,7 @@ class TestShopping:
         (отображаются нужные товары, отображается соотв. цена)
         9. Кликнуть кнопку FINISH
         """
-        app.shopping.buying()
+        app.shopping.buy(data=Goods.ALL_GOODS)
         assert app.shopping.goods() == Goods.ALL_GOODS
         app.shopping.checkout_button_click()
         app.shopping.continue_button_click()

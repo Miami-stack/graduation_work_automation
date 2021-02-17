@@ -1,4 +1,5 @@
 from models.shopping_data import ShopData
+from models.login import UserData
 
 
 class Users:
@@ -94,7 +95,13 @@ class InvalidCheckoutYourInformation:
     INVALID_POSTAL_CODE = "Error: Postal Code is required"
 
 
-class RandomData:
+class RandomUserData:
+    data = UserData.random()
+    login = data.login
+    password = data.password
+
+
+class RandomShopData:
     data = ShopData.random()
     first_name = data.first_name
     last_name = data.last_name

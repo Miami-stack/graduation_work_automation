@@ -60,9 +60,16 @@ class LoginPage(BaseClass):
 
     def items_burger_view(self, wait_time=15):
         logger.info("Пытаемся вытащить итемы с выдвигающегося меню")
-        return self.app.driver.find_elements(*MainLocators.BURGER_ITEMS)
+        timestamp = time.time() + wait_time
+        while time.time() < timestamp:
+            element = self.app.driver.find_elements(*MainLocators.BURGER_ITEMS)
+            if len(element) > 0:
+                return element
+            time.sleep(0.5)
+        return 0
 
     def items(self):
+        time.sleep(0.2)
         return [value.text for value in self.items_burger_view()]
 
     def error_view(self):

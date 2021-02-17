@@ -29,4 +29,5 @@ class Application:
         self.driver.get(self.url)
 
     def browser_close(self):
+        logger.info("Quit browser")
         self.driver.quit()

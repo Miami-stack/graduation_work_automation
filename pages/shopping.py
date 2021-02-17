@@ -91,9 +91,16 @@ class ShoppingPage(BaseClass):
         logger.info("Проверяем, что отображается нужная информация после оплаты")
         return [value.text for value in self.order_info()]
 
-    def buying(self):
-        self.add_to_cart_buttons_click()
-        self.shopping_cart_button_click()
+    def goods_name(self):
+        return self.app.driver.find_elements(*MainLocators.GOODS_NAME)
+
+    def buy(self, data):
+        list1 = []
+        for value in self.goods_name():
+            list1.append(value.text)
+            if list1 == data:
+                self.add_to_cart_buttons_click()
+                self.shopping_cart_button_click()
 
     def error_view(self):
         return self.app.driver.find_element(*ShoppingLocators.ERROR)

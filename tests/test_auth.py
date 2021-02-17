@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from common.constants import Users, Burger, Alerts
+from common.constants import Users, Burger, Alerts, RandomUserData
 
 
 class TestAuth:
@@ -37,6 +37,11 @@ class TestAuth:
             (Users.INVALID_LOCKED_USER, Users.PASSWORD, Alerts.INVALID_LOCKED_USER),
             (Users.EMPTY_USER, Users.EMPTY_PASSWORD, Alerts.EMPTY_USERNAME),
             ("dsadsaads", Users.EMPTY_PASSWORD, Alerts.EMPTY_PASSWORD),
+            (
+                RandomUserData.login,
+                RandomUserData.password,
+                Alerts.INVALID_USERNAME_AND_PASSWORD,
+            ),
         ),
     )
     def test_invalid_auth(self, app, username, password, alert):
