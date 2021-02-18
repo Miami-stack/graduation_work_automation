@@ -36,6 +36,7 @@ class TestShopping:
         8. Кликнуть кнопку FINISH
         """
         app.shopping.buy(data=Goods.ALL_GOODS)
+        app.shopping.shopping_cart_button_click()
         assert app.shopping.goods() == Goods.ALL_GOODS
         app.shopping.checkout_button_click()
         app.shopping.input_values(
@@ -43,6 +44,38 @@ class TestShopping:
         )
         assert app.shopping.finish_info_goods_text() == Goods.FINISH_ALL_GOODS
         assert app.shopping.payment_info_text() == Goods.PAYMENT_INFO_ALL_GOODS
+        app.shopping.finish_button_click()
+        assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
+
+    @allure.story("Покупка товаров")
+    @allure.severity("critical")
+    @pytest.mark.parametrize(
+        "first_name, last_name, postal_code",
+        (
+            (
+                RandomShopData.first_name,
+                RandomShopData.last_name,
+                RandomShopData.postal_code,
+            ),
+        ),
+    )
+    def test_random_shopping(self, app, login, first_name, last_name, postal_code):
+        """
+        1. Открыть страницу
+        2. Выбрать любые товары от 1 до 6
+        3. Кликнуть корзину
+        4. Проверить что выбранные товары добавились
+        5. Кликнуть кнопку "Checkout"
+        6. Заполнить First Name, Last Name, Zip
+        7. Проверить информацию о покупке
+        (отображаются нужные товары, отображается соотв. цена)
+        8. Кликнуть кнопку FINISH
+        """
+        app.shopping.random_buy(name="Sauce Labs Onesie")
+        app.shopping.checkout_button_click()
+        app.shopping.input_values(
+            first_name=first_name, last_name=last_name, postal_code=postal_code
+        )
         app.shopping.finish_button_click()
         assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
 
@@ -112,6 +145,7 @@ class TestShopping:
         9. Кликнуть кнопку FINISH
         """
         app.shopping.buy(data=Goods.ALL_GOODS)
+        app.shopping.shopping_cart_button_click()
         assert app.shopping.goods() == Goods.ALL_GOODS
         app.shopping.checkout_button_click()
         app.shopping.continue_button_click()

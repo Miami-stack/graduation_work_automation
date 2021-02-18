@@ -1,5 +1,6 @@
 from models.shopping_data import ShopData
 from models.login import UserData
+from models.random_data import RandomData
 
 
 class Users:
@@ -93,6 +94,11 @@ class InvalidCheckoutYourInformation:
     INVALID_FIRST_NAME = "Error: First Name is required"
     INVALID_LAST_NAME = "Error: Last Name is required"
     INVALID_POSTAL_CODE = "Error: Postal Code is required"
+
+
+class RandomGoods:
+    data = RandomData.random(Goods.ALL_GOODS)
+    RandomGoods = data.randomly
 
 
 class RandomUserData:

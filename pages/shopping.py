@@ -12,12 +12,11 @@ class ShoppingPage(BaseClass):
         self.app = app
 
     def add_to_cart_button(self):
-        return self.app.driver.find_elements(*MainLocators.ADD_TO_CART_BUTTON)
+        return self.app.driver.find_element(*MainLocators.ADD_TO_CART_BUTTON)
 
-    def add_to_cart_buttons_click(self):
+    def add_to_cart_button_click(self):
         logger.info("Добавление товаров в корзину")
-        for elem in self.add_to_cart_button():
-            elem.click()
+        self.add_to_cart_button().click()
 
     def shopping_cart_button(self):
         return self.app.driver.find_element(*MainLocators.SHOPPING_CART_BUTTON)
@@ -94,12 +93,20 @@ class ShoppingPage(BaseClass):
     def goods_name(self):
         return self.app.driver.find_elements(*MainLocators.GOODS_NAME)
 
+    def goods_from_main_page(self):
+        """Возвращает массив товаров с главной страницы."""
+        return [value.text for value in self.goods_name()]
+
     def buy(self, data):
-        list1 = []
-        for value in self.goods_name():
-            list1.append(value.text)
-            if list1 == data:
-                self.add_to_cart_buttons_click()
+        for i in self.goods_from_main_page():
+            for j in data:
+                if i == j:
+                    self.add_to_cart_button_click()
+
+    def random_buy(self, name):
+        for i in self.goods_from_main_page():
+            if i == name:
+                self.add_to_cart_button_click()
                 self.shopping_cart_button_click()
 
     def error_view(self):
