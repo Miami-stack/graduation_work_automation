@@ -47,7 +47,7 @@ class TestShopping:
         app.shopping.finish_button_click()
         assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
 
-    @allure.story("Покупка товаров")
+    @allure.story("Покупка любых товаров от 1 до 6")
     @allure.severity("critical")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
@@ -71,7 +71,41 @@ class TestShopping:
         (отображаются нужные товары, отображается соотв. цена)
         8. Кликнуть кнопку FINISH
         """
-        app.shopping.random_buy(name="Sauce Labs Onesie")
+        app.shopping.random_buy()
+        app.shopping.shopping_cart_button_click()
+        app.shopping.checkout_button_click()
+        app.shopping.input_values(
+            first_name=first_name, last_name=last_name, postal_code=postal_code
+        )
+        app.shopping.finish_button_click()
+        assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
+
+    @allure.story("Покупка конкретного товара")
+    @allure.severity("critical")
+    @pytest.mark.parametrize(
+        "first_name, last_name, postal_code",
+        (
+            (
+                RandomShopData.first_name,
+                RandomShopData.last_name,
+                RandomShopData.postal_code,
+            ),
+        ),
+    )
+    def test_specific_shopping(self, app, login, first_name, last_name, postal_code):
+        """
+        1. Открыть страницу
+        2. Выбрать конкретный товар
+        3. Кликнуть корзину
+        4. Проверить что выбранные товары добавились
+        5. Кликнуть кнопку "Checkout"
+        6. Заполнить First Name, Last Name, Zip
+        7. Проверить информацию о покупке
+        (отображаются нужные товары, отображается соотв. цена)
+        8. Кликнуть кнопку FINISH
+        """
+        app.shopping.specific_buy(name="Sauce Labs Fleece Jacket")
+        app.shopping.shopping_cart_button_click()
         app.shopping.checkout_button_click()
         app.shopping.input_values(
             first_name=first_name, last_name=last_name, postal_code=postal_code

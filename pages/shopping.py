@@ -3,6 +3,7 @@ import logging
 from common.base import BaseClass
 from locators.main_page import MainLocators
 from locators.shopping_cart import ShoppingLocators
+from common.constants import RandomGoods
 
 logger = logging.getLogger()
 
@@ -97,17 +98,27 @@ class ShoppingPage(BaseClass):
         """Возвращает массив товаров с главной страницы."""
         return [value.text for value in self.goods_name()]
 
-    def buy(self, data):
+    def buy(self, data: list):
+        """Кликает все товары, которые содержатся
+        в массиве data."""
+        logger.info(f"Покупаем товары: {data}")
         for i in self.goods_from_main_page():
             for j in data:
                 if i == j:
                     self.add_to_cart_button_click()
 
-    def random_buy(self, name):
+    def random_buy(self):
+        logger.info(f"Покупаем товары от 1 до 6: {RandomGoods.RandomGoods}")
+        for i in self.goods_from_main_page():
+            for j in RandomGoods.RandomGoods:
+                if i == j:
+                    self.add_to_cart_button_click()
+
+    def specific_buy(self, name):
+        logger.info(f"Покупаем один конкретный товар: {name}")
         for i in self.goods_from_main_page():
             if i == name:
                 self.add_to_cart_button_click()
-                self.shopping_cart_button_click()
 
     def error_view(self):
         return self.app.driver.find_element(*ShoppingLocators.ERROR)
