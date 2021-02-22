@@ -16,14 +16,60 @@ def app(request):
 
 
 @pytest.fixture()
-def login(request, app):
-    login = request.config.getoption("--username")
+def login_standart(request, app):
+    login = request.config.getoption("--username_standart")
     passwd = request.config.getoption("--password")
     app.open_main_page()
     app.login.auth(login, passwd)
     yield
     app.login.burger_button_click()
     app.login.logout_button_click()
+
+
+@pytest.fixture()
+def login_standart_browser_quit(request, app):
+    login = request.config.getoption("--username_standart")
+    passwd = request.config.getoption("--password")
+    app.open_main_page()
+    app.login.auth(login, passwd)
+
+
+@pytest.fixture()
+def login_problem(request, app):
+    login = request.config.getoption("--username_problem")
+    passwd = request.config.getoption("--password")
+    app.open_main_page()
+    app.login.auth(login, passwd)
+    yield
+    app.login.burger_button_click()
+    app.login.logout_button_click()
+
+
+@pytest.fixture()
+def login_problem_browser_quit(request, app):
+    login = request.config.getoption("--username_problem")
+    passwd = request.config.getoption("--password")
+    app.open_main_page()
+    app.login.auth(login, passwd)
+
+
+@pytest.fixture()
+def login_performance(request, app):
+    login = request.config.getoption("--username_performance")
+    passwd = request.config.getoption("--password")
+    app.open_main_page()
+    app.login.auth(login, passwd)
+    yield
+    app.login.burger_button_click()
+    app.login.logout_button_click()
+
+
+@pytest.fixture()
+def login_performance_browser_quit(request, app):
+    login = request.config.getoption("--username_performance")
+    passwd = request.config.getoption("--password")
+    app.open_main_page()
+    app.login.auth(login, passwd)
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -56,11 +102,23 @@ def pytest_addoption(parser):
         help="enter base_url",
     ),
     parser.addoption(
-        "--username",
+        "--username_standart",
         action="store",
         default="standard_user",
         help="enter username",
     ),
+    parser.addoption(
+        "--username_problem",
+        action="store",
+        default="problem_user",
+        help="enter username",
+    ),
+    parser.addoption(
+        "--username_performance",
+        action="store",
+        default="performance_glitch_user",
+        help="enter username",
+    )
     parser.addoption(
         "--password",
         action="store",

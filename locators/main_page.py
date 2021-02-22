@@ -11,3 +11,4 @@ class MainLocators:
         By.XPATH,
         "//*[name()='svg']",
     )
+    ABOUT_BUTTON = (By.XPATH, '//a[@id="about_sidebar_link"]')

@@ -112,3 +112,9 @@ C помощью scoop установить Allure:
 ### Запуск
 
     pytest --alluredir <dir_name>
+
+### Просмотр отчёта
+
+> Запустить команду в терминале в той папке, где лежит <dir_name>
+
+    allure serve <dir_name>

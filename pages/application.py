@@ -6,6 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from common.logger import setup
 from pages.login import LoginPage
 from pages.shopping import ShoppingPage
+from pages.about import AboutPage
 
 logger = logging.getLogger()
 
@@ -23,6 +24,7 @@ class Application:
         self.driver.implicitly_wait(10)
         self.login = LoginPage(self)
         self.shopping = ShoppingPage(self)
+        self.about = AboutPage(self)
 
     def open_main_page(self):
         logger.info("Open main page")

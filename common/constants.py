@@ -24,6 +24,11 @@ class Alerts:
     INVALID_USERNAME_AND_PASSWORD = (
         "Epic sadface: Username and password do not match any user in this service"
     )
+    ABOUT_USER = [
+        "CONTINUOUS TESTING CLOUD\nFor the best customer experience, "
+        "just add Sauce\nLearn more"
+    ]
+    ABOUT_PROBLEM_USER = ["We're sorry. We can't find the page you are looking for."]
 
 
 class Goods:
