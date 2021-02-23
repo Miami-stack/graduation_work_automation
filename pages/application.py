@@ -7,6 +7,7 @@ from common.logger import setup
 from pages.login import LoginPage
 from pages.shopping import ShoppingPage
 from pages.about import AboutPage
+from pages.filter_goods import FilterGoodsPage
 
 logger = logging.getLogger()
 
@@ -25,6 +26,7 @@ class Application:
         self.login = LoginPage(self)
         self.shopping = ShoppingPage(self)
         self.about = AboutPage(self)
+        self.filter_goods = FilterGoodsPage(self)
 
     def open_main_page(self):
         logger.info("Open main page")

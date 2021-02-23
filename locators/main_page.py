@@ -12,3 +12,4 @@ class MainLocators:
         "//*[name()='svg']",
     )
     ABOUT_BUTTON = (By.XPATH, '//a[@id="about_sidebar_link"]')
+    FILTER_DROPDOWN = (By.CLASS_NAME, "product_sort_container")

@@ -101,6 +101,51 @@ class InvalidCheckoutYourInformation:
     INVALID_POSTAL_CODE = "Error: Postal Code is required"
 
 
+class FilterValue:
+    AZ = "az"
+    ZA = "za"
+    LOHI = "lohi"
+    HILO = "hilo"
+
+
+class FilterAlerts:
+    FILTER_A_Z = [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Fleece Jacket",
+        "Sauce Labs Onesie",
+        "Test.allTheThings() T-Shirt (Red)",
+    ]
+
+    FILTER_Z_A = [
+        "Test.allTheThings() T-Shirt (Red)",
+        "Sauce Labs Onesie",
+        "Sauce Labs Fleece Jacket",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Backpack",
+    ]
+
+    FILTER_LOW_HIGH = [
+        "Sauce Labs Onesie",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Bolt T-Shirt",
+        "Test.allTheThings() " "T-Shirt (Red)",
+        "Sauce Labs Backpack",
+        "Sauce Labs Fleece Jacket",
+    ]
+
+    FILTER_HIGH_LOW = [
+        "Sauce Labs Fleece Jacket",
+        "Sauce Labs Backpack",
+        "Test.allTheThings() T-Shirt (Red)",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Onesie",
+    ]
+
+
 class RandomGoods:
     data = RandomData.random(Goods.ALL_GOODS)
     RandomGoods = data.randomly
