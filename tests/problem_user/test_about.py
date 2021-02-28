@@ -1,9 +1,11 @@
 import allure
+import pytest
 
 from common.constants import Alerts
 
 
 class TestAbout:
+    @pytest.mark.xfail(reason="Проблемный юзер сломался")
     @allure.story("Проверка About")
     @allure.severity("minor")
     def test_about(self, app, login_problem_browser_quit):

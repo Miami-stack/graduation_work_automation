@@ -152,3 +152,31 @@ class ShoppingPage(BaseClass):
         )
         self.input_value(self.postal_code_input(), postal_code)
         self.continue_button_click()
+
+    def add_to_cart_buttons(self):
+        return self.app.driver.find_elements(*MainLocators.ADD_TO_CART_BUTTON)
+
+    def add_to_cart_buttons_click(self):
+        logger.info("Кликаем добавление товаров")
+        for value in self.add_to_cart_buttons():
+            value.click()
+
+    def counter_goods_view(self):
+        return self.app.driver.find_elements(*MainLocators.COUNTER_GOODS_IN_CART)
+
+    def count_goods_text(self):
+        for i in self.counter_goods_view():
+            if int(i.text) == 6:
+                return int(i.text)
+
+    def delete_from_cart_buttons(self):
+        return self.app.driver.find_elements(*MainLocators.DELETE_FROM_CART_BUTTON)
+
+    def delete_from_cart_buttons_click(self):
+        logger.info("Кликаем удаление товаров из корзины")
+        for value in self.delete_from_cart_buttons():
+            value.click()
+
+    def null_count_goods_text(self):
+        if not self.counter_goods_view():
+            return "Товары удалены"

@@ -139,8 +139,8 @@ class FilterAlerts:
     FILTER_HIGH_LOW = [
         "Sauce Labs Fleece Jacket",
         "Sauce Labs Backpack",
-        "Test.allTheThings() T-Shirt (Red)",
         "Sauce Labs Bolt T-Shirt",
+        "Test.allTheThings() T-Shirt (Red)",
         "Sauce Labs Bike Light",
         "Sauce Labs Onesie",
     ]
