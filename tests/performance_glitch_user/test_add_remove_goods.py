@@ -3,7 +3,7 @@ from pytest_testrail.plugin import pytestrail
 
 
 class TestCountGoods:
-    @pytestrail.case("C9")
+    @pytestrail.case("C11")
     @allure.story("Проверка добавления/удаления товаров, счетчик корзины")
     @allure.severity("severity")
     def test_count_goods(self, app, login_standart):

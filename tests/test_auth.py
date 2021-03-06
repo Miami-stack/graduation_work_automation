@@ -1,12 +1,13 @@
 import allure
 import pytest
-
+from pytest_testrail.plugin import pytestrail
 from common.constants import Users, Burger, Alerts, RandomUserData
 
 
 class TestAuth:
     @allure.story("Авторизация")
     @allure.severity("blocker")
+    @pytestrail.case("C1")
     @pytest.mark.parametrize(
         "username, password",
         (
@@ -30,8 +31,9 @@ class TestAuth:
 
     @allure.story("Авторизация")
     @allure.severity("blocker")
+    @pytestrail.case("C1")
     @pytest.mark.xfail(reason="Проблемный юзер сломался")
-    def test_auth_shop_for_problem_user(self, app, username, password):
+    def test_auth_shop_for_problem_user(self, app):
         """
         1. Открыть страницу
         2. Заполнить поля username и password валидными данными
@@ -45,8 +47,9 @@ class TestAuth:
         assert app.login.items() == Burger.ITEMS
         app.login.logout_button_click()
 
-    @allure.story("Авторизация")
+    @allure.story("Невалидная авторизация")
     @allure.severity("blocker")
+    @pytestrail.case("C2")
     @pytest.mark.parametrize(
         "username, password, alert",
         (

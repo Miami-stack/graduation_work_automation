@@ -1,5 +1,6 @@
 import allure
 import pytest
+from pytest_testrail.plugin import pytestrail
 
 from common.constants import (
     Goods,
@@ -13,6 +14,7 @@ from common.constants import (
 class TestShopping:
     @allure.story("Покупка товаров")
     @allure.severity("critical")
+    @pytestrail.case("C15")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
         (
@@ -49,6 +51,7 @@ class TestShopping:
 
     @allure.story("Покупка любых товаров от 1 до 6")
     @allure.severity("critical")
+    @pytestrail.case("C18")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
         (
@@ -84,6 +87,7 @@ class TestShopping:
 
     @allure.story("Покупка конкретного товара")
     @allure.severity("critical")
+    @pytestrail.case("C21")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
         (
@@ -119,6 +123,7 @@ class TestShopping:
 
     @allure.story("Невалидная покупка без указания товаров")
     @allure.severity("critical")
+    @pytestrail.case("C24")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
         (
@@ -155,6 +160,7 @@ class TestShopping:
 
     @allure.story("Невалидная покупка без указания информации о покупателе")
     @allure.severity("critical")
+    @pytestrail.case("C28")
     @pytest.mark.parametrize(
         "first_name, last_name, postal_code",
         (

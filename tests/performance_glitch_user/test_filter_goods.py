@@ -2,9 +2,11 @@ import allure
 import pytest
 from common.constants import FilterAlerts
 from common.constants import FilterValue
+from pytest_testrail.plugin import pytestrail
 
 
 class TestFilterGoods:
+    @pytestrail.case("C14")
     @allure.story("Проверка фильтрации товара")
     @allure.severity("major")
     @pytest.mark.parametrize(

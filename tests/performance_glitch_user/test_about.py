@@ -1,9 +1,10 @@
 import allure
-
+from pytest_testrail.plugin import pytestrail
 from common.constants import Alerts
 
 
 class TestAbout:
+    @pytestrail.case("C8")
     @allure.story("Проверка About")
     @allure.severity("minor")
     def test_about(self, app, login_performance_browser_quit):

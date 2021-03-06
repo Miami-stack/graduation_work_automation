@@ -1,9 +1,11 @@
 import allure
+import pytest
 from pytest_testrail.plugin import pytestrail
 
 
 class TestCountGoods:
-    @pytestrail.case("C9")
+    @pytestrail.case("C10")
+    @pytest.mark.skip(reason="Не удаляются товары")
     @allure.story("Проверка добавления/удаления товаров, счетчик корзины")
     @allure.severity("severity")
     def test_count_goods(self, app, login_standart):

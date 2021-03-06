@@ -1,5 +1,7 @@
 import allure
 import pytest
+from pytest_testrail.plugin import pytestrail
+
 from common.constants import FilterAlerts
 from common.constants import FilterValue
 
@@ -7,6 +9,7 @@ from common.constants import FilterValue
 class TestFilterGoods:
     @allure.story("Проверка фильтрации товара")
     @allure.severity("major")
+    @pytestrail.case("C13")
     @pytest.mark.skip(reason="Фильтрация работает неккоректно")
     @pytest.mark.parametrize(
         "value, alert",
