@@ -6,6 +6,7 @@ from pytest_testrail.plugin import pytestrail
 
 
 class TestFilterGoods:
+    @pytest.mark.fasttest
     @pytestrail.case("C14")
     @allure.story("Проверка фильтрации товара")
     @allure.severity("major")

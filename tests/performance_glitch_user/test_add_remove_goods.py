@@ -1,8 +1,10 @@
 import allure
+import pytest
 from pytest_testrail.plugin import pytestrail
 
 
 class TestCountGoods:
+    @pytest.mark.fasttest
     @pytestrail.case("C11")
     @allure.story("Проверка добавления/удаления товаров, счетчик корзины")
     @allure.severity("severity")

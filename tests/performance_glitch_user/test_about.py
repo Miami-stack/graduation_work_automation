@@ -1,9 +1,11 @@
 import allure
+import pytest
 from pytest_testrail.plugin import pytestrail
 from common.constants import Alerts
 
 
 class TestAbout:
+    @pytest.mark.fasttest
     @pytestrail.case("C8")
     @allure.story("Проверка About")
     @allure.severity("minor")

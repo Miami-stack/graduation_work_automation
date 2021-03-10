@@ -25,8 +25,9 @@ class Alerts:
         "Epic sadface: Username and password do not match any user in this service"
     )
     ABOUT_USER = [
-        "CONTINUOUS TESTING CLOUD\nFor the best customer experience, "
-        "just add Sauce\nLearn more"
+        "CONTINUOUS TESTING CLOUD\nBe confident that your web and mobile apps look, "
+        "functperform exactly as they should."
+        "\nOn every browser, OS, and device. Every sgle time.\nTry it free\nLearn more"
     ]
     ABOUT_PROBLEM_USER = ["We're sorry. We can't find the page you are looking for."]
 

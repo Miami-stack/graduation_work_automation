@@ -12,6 +12,7 @@ from common.constants import (
 
 
 class TestShopping:
+    @pytest.mark.fasttest
     @allure.story("Покупка товаров")
     @allure.severity("critical")
     @pytestrail.case("C17")
@@ -49,6 +50,7 @@ class TestShopping:
         app.shopping.finish_button_click()
         assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
 
+    @pytest.mark.fasttest
     @allure.story("Покупка любых товаров от 1 до 6")
     @allure.severity("critical")
     @pytestrail.case("C20")
@@ -85,6 +87,7 @@ class TestShopping:
         app.shopping.finish_button_click()
         assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
 
+    @pytest.mark.fasttest
     @allure.story("Покупка конкретного товара")
     @allure.severity("critical")
     @pytestrail.case("C23")
@@ -121,6 +124,7 @@ class TestShopping:
         app.shopping.finish_button_click()
         assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
 
+    @pytest.mark.fasttest
     @allure.story("Невалидная покупка без указания товаров")
     @allure.severity("critical")
     @pytestrail.case("C26")
@@ -158,6 +162,7 @@ class TestShopping:
         app.shopping.finish_button_click()
         assert app.shopping.order_info_text() == Order.ORDER_INFORMATION
 
+    @pytest.mark.fasttest
     @allure.story("Невалидная покупка без указания информации о покупателе")
     @allure.severity("critical")
     @pytestrail.case("C29")
