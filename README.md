@@ -1,4 +1,4 @@
-# Выпускная работа по автоматизации тестирования
+# Работа по автоматизации тестирования
 [![Build Status](https://travis-ci.org/Miami-stack/graduation_work_automation.svg?branch=main)](https://travis-ci.org/Miami-stack/graduation_work_automation)
 
 # Тестируемый ресурс:
